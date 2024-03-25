@@ -12,6 +12,22 @@ import {Link} from "react-router-dom"
 
 const Profile = () => {
   const {userData}=useAuth();
+
+  const [data,setData]=React.useState(
+    {
+      fname:"",
+      lname:"",
+      email:"",
+    }
+  );
+  const [autofill,setAutoFill]=React.useState(true);
+
+  if(userData && autofill){
+    setData(userData);
+    setAutoFill(false);
+  }
+  
+
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
       <Card sx={{ maxWidth: 345 }}>
@@ -22,7 +38,9 @@ const Profile = () => {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {`${userData.fname} ${userData.lname}`}
+
+            {`${data.fname} ${data.lname}`} <br/>
+            {`${data.email}`}
             
           </Typography>
           <Typography variant="body2" color="text.secondary">

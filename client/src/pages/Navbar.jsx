@@ -15,7 +15,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../Provider/AuthProvider';
 
-const pages = ['Home', 'AboutUs', 'ContactUS'];
+const pages = ['Home', 'AboutUs', 'ContactUS','Services'];
 const settings = ['Profile', 'Dashboard', 'Logout'];
 
 function Navbar() {

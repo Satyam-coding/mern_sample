@@ -9,6 +9,7 @@ import About from './pages/About';
 import Navbar from './pages/Navbar';
 import Logout from './pages/Logout';
 import Profile from './pages/Profile';
+import Services from './pages/Services';
 import { UpdatePassword } from './pages/UpdatePassword';
 import {ForgotPassword} from './pages/ForgotPassword';
 import {ResetPassword} from './pages/ResetPassword';
@@ -26,6 +27,7 @@ const App = () => {
         <Route path='/contactus' element={<Contact/>}/>
         <Route path='/aboutus' element={<About/>}/>
         <Route path='/profile' element={<Profile/>}/>
+        <Route path='/services' element={<Services/>}/>
         <Route path='/updatePassword' element={<UpdatePassword/>}/>
         <Route path='/forgotPassword' element={<ForgotPassword/>}/>
         <Route path='/resetPassword' element={<ResetPassword/>}/>
