@@ -13,6 +13,10 @@ import Services from './pages/Services';
 import { UpdatePassword } from './pages/UpdatePassword';
 import {ForgotPassword} from './pages/ForgotPassword';
 import {ResetPassword} from './pages/ResetPassword';
+import SingleProduct from './pages/SingleProduct';
+import Search from './components/Search';
+import Cart from './pages/Cart';
+import CartComp from './components/CartComp';
 
 
 const App = () => {
@@ -23,6 +27,7 @@ const App = () => {
         <Route path='/register' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/> 
         <Route path='/otp' element={<VerifyOtp/>}/> 
+        <Route path='/' element={<Home/>}/>
         <Route path='/home' element={<Home/>}/> 
         <Route path='/contactus' element={<Contact/>}/>
         <Route path='/aboutus' element={<About/>}/>
@@ -31,9 +36,11 @@ const App = () => {
         <Route path='/updatePassword' element={<UpdatePassword/>}/>
         <Route path='/forgotPassword' element={<ForgotPassword/>}/>
         <Route path='/resetPassword' element={<ResetPassword/>}/>
-        
+        <Route path='/sp' element={<SingleProduct/>}/>
+        <Route path='/search' element={<Search/>}/>
         <Route path='/logout' element={<Logout/>}/>
-
+        <Route path='/cart' element={<Cart/>}/>
+        <Route path='/cartc' element={<CartComp/>}/>
         </Routes>
     </BrowserRouter>
     

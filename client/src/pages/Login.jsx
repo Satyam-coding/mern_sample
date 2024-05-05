@@ -34,54 +34,58 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export  function Login() {
+export function Login() {
 
-  const navigate=useNavigate();
-  const {setTokenToLocalStorage}=useAuth();
+  const navigate = useNavigate();
+  const {BASE_URL,setTokenToLocalStorage } = useAuth();
 
 
-  const [user,setUser]= React.useState({
-    email:"",
-    password:"" 
+  const [user, setUser] = React.useState({
+    email: "",
+    password: ""
   });
 
-  const handleInput= (e) =>{
-    const name=e.target.name;
-    const value=e.target.value;
-    setUser({...user,[name]:value})
-  } 
-  const handleSubmit = async(event) => {
+  const handleInput = (e) => {
+    console.log(e);
+    const name = e.target.name;
+    const value = e.target.value;
+    setUser({ ...user, [name]: value })
+  }
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    
-    const response= await fetch('http://localhost:7000/login', {
-      
+
+    const response = await fetch(`${BASE_URL}/login`, {
+
       headers: {
         'Content-Type': 'application/json'
       },
       method: 'POST',
       body: JSON.stringify(user)
-  });
-  console.log(response);
-  const data = await response.json();
+    });
+    console.log(response);
+    const data = await response.json();
 
-  if(response.ok){
-    toast.success('Login Successfully', {
-      position: "top-right",
-      autoClose: 500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
- 
+    if (response.ok) {
+      toast.success('Login Successfully', {
+        position: "top-right",
+        autoClose: 500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+
       });
       setTokenToLocalStorage(data.token);
-    navigate("/");
-  }
-  else{
-    alert(data.message);
-  }
+      navigate("/");
+    }
+    else if (data.message == "Account not Verified") {
+      navigate("/otp");
+    }
+    else {
+      alert(data.message);
+    }
   }
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -159,7 +163,7 @@ export  function Login() {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="/register"variant="body2">
+                  <Link href="/register" variant="body2">
                     "Don't have an account? Sign Up"
                   </Link>
                 </Grid>

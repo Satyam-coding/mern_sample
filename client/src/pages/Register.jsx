@@ -15,7 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {useNavigate} from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { useAuth } from '../Provider/AuthProvider';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -35,6 +35,7 @@ const defaultTheme = createTheme();
 
 export  function Register() {
 
+  const {BASE_URL}=useAuth();
   const navigate= useNavigate();
 
     const [user,setUSer]=React.useState({
@@ -55,7 +56,7 @@ export  function Register() {
   const handleSubmit = async(event) => {
     event.preventDefault();
 
-    const response = await fetch('http://localhost:7000/register', {
+    const response = await fetch(`${BASE_URL}/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

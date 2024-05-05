@@ -4,11 +4,11 @@ import {connnectDB} from "./config/connnectDB.js";
 import router from "./routes/user_routes.js";
 import cors from "cors";
 import { errorMiddleware } from "./middleware/validation.js";
-
-dotenv.config({path:'./config/config.env'});
-
+dotenv.config();
+// dotenv.config({path:'./config/config.env'});
+const FRONTEND_URL=process.env.FRONTEND_URL;
 const corsOptions ={
-    origin:'http://localhost:5173',
+    origin:`${FRONTEND_URL}`,
     methods:'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials:true,
 }
@@ -23,7 +23,7 @@ app.use(router);
 app.use(errorMiddleware);
 
 
-const PORT=process.env.PORT || 5000;
+const PORT=process.env.PORT || 7000;
 
 connnectDB();
 

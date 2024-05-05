@@ -11,9 +11,11 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {useNavigate} from 'react-router-dom';
+import { useAuth } from '../Provider/AuthProvider';
 const defaultTheme = createTheme();
 
 export const  UpdatePassword=()=> {
+  const {BASE_URL}=useAuth();
   const navigate=useNavigate();
   const [passwords,setPasswords]=React.useState({
     oldPassword:"",
@@ -30,7 +32,7 @@ export const  UpdatePassword=()=> {
   const handleSubmit = async(event) => {
     event.preventDefault();
     
-    const response = await fetch('http://localhost:7000/updatePassword', {
+    const response = await fetch(`${BASE_URL}/updatePassword`, {
       method: 'POST',
       headers: {  
         'Content-Type': 'application/json',

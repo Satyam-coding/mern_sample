@@ -7,10 +7,11 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
-
+import { useAuth } from '../Provider/AuthProvider';
 const defaultTheme = createTheme();
 
 export const ResetPassword = () => {
+  const {BASE_URL}=useAuth();
   const navigate = useNavigate();
   const [user,setUser]=useState({
     otp:"",
@@ -28,7 +29,7 @@ const handleInputChange=(e)=>{
 
     
     try {
-      const response = await fetch('http://localhost:7000/resetPassword', {
+      const response = await fetch(`${BASE_URL}/resetPassword`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

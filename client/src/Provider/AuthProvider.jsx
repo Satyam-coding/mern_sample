@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 
 const MyContext = React.createContext();
-
+const BASE_URL='https://api.render.com/deploy/srv-co4qsqa1hbls73c0qgag?key=AdQefjlD-q4';
 const AuthProvider = ({children}) => {
 
     const [token, setToken] = useState(localStorage.getItem('token'));
@@ -42,7 +42,7 @@ const AuthProvider = ({children}) => {
 
 
     return (
-        <MyContext.Provider value={{ isLoggedIn, setTokenToLocalStorage,removeTokenFromLocalStorage,userData}}>
+        <MyContext.Provider value={{BASE_URL, isLoggedIn, setTokenToLocalStorage,removeTokenFromLocalStorage,userData}}>
             {children}
         </MyContext.Provider>
     )

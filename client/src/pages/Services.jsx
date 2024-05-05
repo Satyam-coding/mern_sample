@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import Card from "../components/Card";
-import "../assets/Services.css"
-import { Loader } from './Loader';
-import { useProvider } from "../Provider/Service_API_Provider";
-const Services = () => {
+import {Cards} from "../components/Card";
 
-  const { state } = useProvider();
-  const { loading, api_data } = state;
+import { Loader } from './Loader';
+import { useAPIContext } from "../Provider/Service_API_Provider";
+import Search from '../components/Search';
+
+const Services = () => {
+ 
+  const { loading, api_data } =  useAPIContext();;
 
   if (loading) {
     return (
@@ -16,14 +17,16 @@ const Services = () => {
   return (
 
     <>
-
-      <div className='container'>
+      <div className='flex justify-center items-center'>
+        {/* <Search/> */}
+      </div>
+      <div className='flex justify-center flex-wrap '>
         {
           api_data.map((curr) => {
-            const { id, title, price, description, category, images } = curr;
+           
 
             return (
-              <Card key={id} title={title} price={price} description={description} category={category.name} image={images[0]} />
+              <Cards key={curr.id} curr ={curr}/>
             )
           })};
       </div>
